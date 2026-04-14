@@ -1,18 +1,51 @@
 {% extends 'base.html' %}
-{% block title %}Lista de Categorias - {{ block.super }}{% endblock %}
+
+{% block title %}
+  Lista de Categorias - {{ block.super }}
+{% endblock %}
+
 {% block body %}
-  <br /><a href="{% url 'categories:add_category' %}">Cadastro de nova categoria</a><br /><br />
-  <b>Lista de Categorias</b><br /><br />
+  <br />
+  <a href="{% url 'categories:add_category' %}">
+    <button type="button" style="background-color: #5cb85c; width: 220px; height: 40px; color: white; border-radius: 5px; cursor: pointer; border: none;">
+      + Cadastrar Nova Categoria
+    </button>
+  </a>
+  <br /><br />
+
+  <b>Lista de Categorias</b>
+  <br /><br />
+
   <table border="1">
     <thead>
-      <tr><th>ID</th><th>Nome</th><th>Descricao</th><th></th><th></th></tr>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Descricao</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
     </thead>
     <tbody>
       {% for category in categories %}
         <tr>
-          <th>{{ category.id }}</th><td>{{ category.name }}</td><td>{{ category.description }}</td>
-          <td><a href="{% url 'categories:edit_category' category.id %}">Editar</a></td>
-          <td><a href="{% url 'categories:delete_category' category.id %}" >Excluir</a></td>
+          <th>{{ category.id }}</th>
+          <td>{{ category.name }}</td>
+          <td>{{ category.description }}</td>
+          <td>
+            <a href="{% url 'categories:edit_category' category.id %}">
+              <button type="button" style="background-color: #f0ad4e; width: 80px; height: 30px; color: white; border-radius: 5px; cursor: pointer; border: none;">
+                Editar
+              </button>
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'categories:delete_category' category.id %}">
+              <button type="button" style="background-color: #d9534f; width: 80px; height: 30px; color: white; border-radius: 5px; cursor: pointer; border: none;">
+                Excluir
+              </button>
+            </a>
+          </td>
         </tr>
       {% endfor %}
     </tbody>
